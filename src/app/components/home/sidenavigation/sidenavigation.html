@@ -10,11 +10,12 @@
 
   <!--Accordion-->
   <div class="mt-4 space-y-3">
+    @for (mainCategory of getCategories(); track mainCategory.id) {
     <details class="group rounded-t-xl bg-white border border-gray-200">
       <summary
         class="cursor-pointer list-none px-5 py-3 bg-blue-100 font-semibold text-gray-600 hover:bg-blue-50 flex justify-between items-center transition rounded-t-xl"
       >
-        <span class="text-gray-700">Category</span>
+        <span class="text-gray-700">{{ mainCategory.category }}</span>
         <fa-icon
           [icon]="faAngleDown"
           class="transform transition-transform group-open:rotate-180 text-gray-400"
@@ -22,14 +23,15 @@
       </summary>
       <div class="px-5 py-4">
         <ul class="space-y-3">
+          @for (subCategory of getCategories(mainCategory.id); track
+          subCategory.id) {
           <li class="text-center">
-            <a href="#" class="link-hover">Item 1</a>
+            <a href="#" class="link-hover">{{ subCategory.category }}</a>
           </li>
-          <li class="text-center">
-            <a href="#" class="link-hover">Item 2</a>
-          </li>
+          }
         </ul>
       </div>
     </details>
+    }
   </div>
 </div>
