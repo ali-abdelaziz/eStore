@@ -19,6 +19,8 @@
     "@angular/platform-server": "^20.0.0",
     "@angular/router": "^20.0.0",
     "@angular/ssr": "^20.0.0",
+    "@fortawesome/angular-fontawesome": "^2.0.1",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@tailwindcss/postcss": "^4.1.10",
     "express": "^5.1.0",
     "postcss": "^8.5.6",
