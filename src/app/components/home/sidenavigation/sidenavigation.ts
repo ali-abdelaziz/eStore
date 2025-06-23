@@ -19,6 +19,7 @@ export class Sidenavigation {
   }
 
   getCategories(parentCategoryId?: number): Category[] {
+    // fetch categories based on parentCategoryId
     return this.categories.filter(
       (category) => category.parent_category_id === parentCategoryId
     );
