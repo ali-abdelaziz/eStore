@@ -40,3 +40,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# This file is used to indicate that the server is running.
+/run-server.txt
