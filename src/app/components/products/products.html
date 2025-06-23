@@ -15,6 +15,12 @@
         }}</a>
       </h5>
       <p class="text-base font-normal mt-1">{{ product.price | currency }}</p>
+      <!-- Ratings -->
+      @if (product.ratings > 0) {
+      <ng-container>
+        <app-ratings [score]="product.ratings"></app-ratings>
+      </ng-container>
+      }
     </div>
   </div>
   }
