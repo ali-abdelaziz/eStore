@@ -17,7 +17,14 @@ app.get("/", (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(200).send("Connection Established");
+      connection.query("SELECT * FROM product", (error, results) => {
+        if (error) {
+          res.status(500).send(error);
+        } else {
+          res.status(200).json(results);
+        }
+        connection.release();
+      });
     }
   });
 });
