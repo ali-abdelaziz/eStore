@@ -13,18 +13,11 @@ const pool = mysql.createPool({
 });
 
 app.get("/", (req, res) => {
-  pool.getConnection((err, connection) => {
-    if (err) {
-      res.status(500).send(err);
+  pool.query("SELECT * FROM products", (error, results) => {
+    if (error) {
+      res.status(500).send(error);
     } else {
-      connection.query("SELECT * FROM product", (error, results) => {
-        if (error) {
-          res.status(500).send(error);
-        } else {
-          res.status(200).json(results);
-        }
-        connection.release();
-      });
+      res.status(200).json(results);
     }
   });
 });
