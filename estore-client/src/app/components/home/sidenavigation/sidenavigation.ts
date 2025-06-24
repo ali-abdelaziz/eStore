@@ -8,20 +8,25 @@ import { CategoryService } from '../services/category';
   selector: 'app-sidenavigation',
   imports: [FontAwesomeModule],
   templateUrl: './sidenavigation.html',
-  styleUrl: './sidenavigation.css'
+  styleUrl: './sidenavigation.css',
 })
 export class Sidenavigation {
   faAngleDown = faAngleDown;
   categories: Category[] = [];
 
-  constructor(categoryService: CategoryService) {
-    this.categories = categoryService.getAllCategories();
+  constructor(private categoryService: CategoryService) {
+    this.categoryService.getAllCategories().subscribe((categories) => {
+      this.categories = categories;
+      // console.log('Categories:', this.categories);
+    });
   }
 
   getCategories(parentCategoryId?: number): Category[] {
     // fetch categories based on parentCategoryId
-    return this.categories.filter(
-      (category) => category.parent_category_id === parentCategoryId
+    return this.categories.filter((category) =>
+      parentCategoryId
+        ? category.parent_category_id === parentCategoryId
+        : category.parent_category_id === null
     );
   }
 }
