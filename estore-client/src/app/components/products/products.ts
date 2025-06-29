@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
-import { ProductListItem } from './types/products.type';
 import { ProductsService } from './services/products';
 import { CommonModule } from '@angular/common';
-import { Ratings } from "../ratings/ratings";
+import { Ratings } from '../ratings/ratings';
+import { Product } from './types/products.type';
 
 @Component({
   selector: 'app-products',
   imports: [CommonModule, Ratings],
   templateUrl: './products.html',
   styleUrl: './products.css',
-  providers: [ProductsService]
+  providers: [ProductsService],
 })
 export class Products {
-
-  products: ProductListItem[] = [];
+  products: Product[] = [];
 
   constructor(private productsService: ProductsService) {
-    this.products = this.productsService.getProductsList();
+    this.productsService.getAllProducts().subscribe((products) => {
+      this.products = products;
+    });
   }
-
 }
