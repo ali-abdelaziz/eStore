@@ -10,7 +10,7 @@
         ></span>
       </a>
     </li>
-    @for (category of categories; track category.id) {
+    @for (category of categoryStore.topLevelCategories(); track category.id) {
     <li class="list-none inline-block mx-4 py-1.5 h-10 relative group">
       <a
         href="javaScript:void(0)"
