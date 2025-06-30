@@ -7,10 +7,10 @@ Node.js, Tailwind CSS, and MySQL.
 The server side of the application is built using Node.js and Express.js. It provides a RESTful API for managing products, orders, and users.
 
 <!-- to run the server, navigate to the server directory and run the following command: -->
-```bash nodemon index.js ```
+```nodemon index.js ```
 
 ## Client Side
 The client side of the application is built using Angular. It provides a user interface for managing products, orders, and users.
 
 <!-- to run the client, navigate to the client directory and run the following command: -->
-```bash ng serve ```
+```ng serve ```
