@@ -28,4 +28,8 @@ export class Home {
   onSelectSubCategory(subCategoryId: number): void {
     this.productsStoreItem.loadProducts({ subcategoryid: subCategoryId });
   }
+
+  onSelectCategory(mainCategoryId: number): void {
+    this.productsStoreItem.loadProducts({ maincategoryid: mainCategoryId });
+  }
 }
