@@ -8,10 +8,11 @@ import { CategoryService } from './services/category/category';
 import { ProductsStoreItem } from '../products/services/products.storeItem';
 import { ProductsService } from '../products/services/products';
 import { SearchKeyword } from './types/searchKeyword.type';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [Header, Catnavigation, Sidenavigation, Products],
+  imports: [Header, Catnavigation, RouterOutlet],
   templateUrl: './home.html',
   styleUrl: './home.css',
   providers: [
@@ -28,10 +29,6 @@ export class Home {
   ) {
     this.categoriesStoreItem.loadCategories();
     this.productsStoreItem.loadProducts();
-  }
-
-  onSelectSubCategory(subCategoryId: number): void {
-    this.productsStoreItem.loadProducts({ subcategoryid: subCategoryId });
   }
 
   onSelectCategory(mainCategoryId: number): void {

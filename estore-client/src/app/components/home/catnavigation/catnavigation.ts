@@ -1,10 +1,11 @@
 import { Component, output } from '@angular/core';
 import { Category } from '../types/category';
 import { CategoriesStoreItem } from '../services/category/categories.storeItem';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-catnavigation',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './catnavigation.html',
   styleUrl: './catnavigation.css',
 })

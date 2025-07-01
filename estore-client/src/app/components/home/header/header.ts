@@ -7,10 +7,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { CategoriesStoreItem } from '../services/category/categories.storeItem';
 import { SearchKeyword } from '../types/searchKeyword.type';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
