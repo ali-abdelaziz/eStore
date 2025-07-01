@@ -1,7 +1,11 @@
 <div class="w-full shadow-lg shadow-gray-500/50 bg-gray-900">
   <div class="flex items-center gap-4 w-full max-md:flex-wrap justify-between">
     <!-- logo -->
-    <div routerLink="/home/products" type="button" class="flex items-center ms-2 p-3 w-[23%] cursor-pointer">
+    <div
+      routerLink="/home/products"
+      type="button"
+      class="flex items-center ms-2 p-3 w-[23%] cursor-pointer"
+    >
       <img
         src="assets/logo/estore-logo.svg"
         alt="eStore Logo"
@@ -10,6 +14,7 @@
       <h1 class="text-3xl font-bold text-white">eStore</h1>
     </div>
     <!-- search bar & categories -->
+    @if (displaySearch()) {
     <div
       class="p-0 my-4 w-[50%] h-[2.5rem] bg-white rounded-lg flex items-center"
     >
@@ -33,6 +38,7 @@
         <fa-icon [icon]="faSearch" class="text-gray-700 text-lg"></fa-icon>
       </button>
     </div>
+    }
     <!-- profile & wishlist & cart -->
     <div class="flex items-center me-6 gap-6 justify-end h-full">
       <div class="flex items-center gap-2 text-white">
