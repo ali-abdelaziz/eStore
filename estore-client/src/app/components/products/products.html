@@ -1,4 +1,12 @@
 <div class="flex flex-wrap justify-evenly">
+  <!-- Empty state -->
+  @if (productsStoreItem.products().length === 0) {
+  <div class="text-center w-full mt-16 text-[50px] text-gray-500 font-medium">
+    <p>
+      <fa-icon [icon]="faBoxOpen" class="text-[60px]"></fa-icon>
+      No products found</p>
+  </div>
+  } @else {
   @for (product of productsStoreItem.products(); track product.id) {
   <div class="mx-4 p-3 mt-4 mb-4 flex flex-col rounded-lg shadow-md">
     <div class="overflow-hidden rounded-md aspect-[3/4] bg-gray-100">
@@ -10,9 +18,9 @@
     </div>
     <div class="p-4 text-center">
       <h5 class="font-semibold">
-        <a href="#" class="text-black hover:text-black no-underline">{{
-          product.product_name
-        }}</a>
+        <a href="#" class="text-black hover:text-black no-underline"
+          >{{ product.product_name }}</a
+        >
       </h5>
       <p class="text-base font-normal mt-1">{{ product.price | currency }}</p>
       <!-- Ratings -->
@@ -23,5 +31,5 @@
       }
     </div>
   </div>
-  }
+  } }
 </div>
