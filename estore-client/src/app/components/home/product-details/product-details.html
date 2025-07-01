@@ -1,22 +1,22 @@
 <div class="flex flex-wrap my-10 max-w-6xl mx-auto p-4">
   <div class="w-full md:w-5/12 md:text-right">
     <img
-      [src]="'../../../../assets/images/shop-1.jpg'"
+      [src]="'../../../../assets/images/' + product()?.product_img"
       class="h-[25em] rounded-xl inline-block"
     />
   </div>
   <div class="w-full md:w-7/12 mt-6 md:mt-0 md:pl-12">
-    <span class="text-[2.7em] font-bold mr-4">Product name</span>
-    <app-ratings [score]="4"></app-ratings>
+    <span class="text-[2.7em] font-bold mr-4">{{product()?.product_name}}</span>
+    <app-ratings [score]="product()?.ratings ?? 0"></app-ratings>
     <hr class="my-4" />
 
     <div class="text-[1.3em] font-medium text-gray-600 mb-4">
       Price:
-      <span class="text-[1.6em] font-semibold text-black">$45</span>
+      <span class="text-[1.6em] font-semibold text-black">{{product()?.price | currency}}</span>
       <div class="text-sm">Inclusive of all taxes.</div>
     </div>
     <div class="text-[1.5em] font-semibold text-gray-700">
-      Product description goes here.
+      {{ product()?.product_description }}
     </div>
   </div>
 </div>
