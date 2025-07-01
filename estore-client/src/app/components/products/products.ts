@@ -6,10 +6,11 @@ import { Product } from './types/products.type';
 import { ProductsStoreItem } from './services/products.storeItem';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBoxOpen } from '@fortawesome/free-solid-svg-icons';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule, Ratings, FontAwesomeModule],
+  imports: [CommonModule, Ratings, FontAwesomeModule, RouterLink],
   templateUrl: './products.html',
   styleUrl: './products.css',
 })
