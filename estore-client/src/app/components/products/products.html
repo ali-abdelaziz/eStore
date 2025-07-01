@@ -10,11 +10,17 @@
   @for (product of productsStoreItem.products(); track product.id) {
   <div class="mx-4 p-3 mt-4 mb-4 flex flex-col rounded-lg shadow-md">
     <div class="overflow-hidden rounded-md aspect-[3/4] bg-gray-100">
-      <img
-        class="rounded-md mx-auto transition-transform duration-300 ease-in-out transform hover:scale-105"
-        [src]="'assets/images/' + product.product_img"
-        [alt]="product.product_name"
-      />
+      @defer (on viewport) {
+        <img
+          class="rounded-md mx-auto transition-transform duration-300 ease-in-out transform hover:scale-105"
+          [src]="'assets/images/' + product.product_img"
+          [alt]="product.product_name"
+        />
+      } @placeholder {
+        <div class="flex items-center justify-center h-full">
+          <p>Loading...</p>
+        </div>
+      }
     </div>
     <div class="p-4 text-center">
       <h5 class="font-semibold">
