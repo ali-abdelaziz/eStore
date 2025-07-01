@@ -14,6 +14,7 @@ export class ProductsStoreItem {
   loadProducts(filters?: {
     maincategoryid?: number;
     subcategoryid?: number;
+    keyword?: string;
   }): void {
     this.productsService.getAllProducts(filters).subscribe((products) => {
       this._products.set(products);

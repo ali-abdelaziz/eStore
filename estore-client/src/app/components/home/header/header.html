@@ -14,17 +14,20 @@
       class="p-0 my-4 w-[50%] h-[2.5rem] bg-white rounded-lg flex items-center"
     >
       <select
+        #categoryOptions
         class="w-auto h-full border-none outline-none rounded-l-lg font-semibold bg-gray-300 text-gray-700 px-2 pr-5"
       >
-      @for (category of categoryStore.topLevelCategories(); track $index) {
-        <option>{{ category.category }}</option>
-      }
+        @for (category of categoryStore.topLevelCategories(); track $index) {
+        <option [value]="category.id">{{ category.category }}</option>
+        }
       </select>
       <input
+        #keyword
         class="w-[90%] h-full inline-block border-none outline-none px-3"
         placeholder="Search..."
       />
       <button
+        (click)="onClickSearch(keyword.value, categoryOptions.value)"
         class="w-[10%] h-10 border-none bg-gray-300 flex justify-center items-center cursor-pointer rounded-r-lg hover:bg-gray-400 transition duration-300 ease-in-out"
       >
         <fa-icon [icon]="faSearch" class="text-gray-700 text-lg"></fa-icon>
