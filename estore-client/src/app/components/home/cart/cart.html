@@ -1,0 +1,26 @@
+<ng-container>
+  @if (!cartStore.cart().products.length) {
+  <div
+    class="w-[90%] h-[20em] flex flex-col items-center justify-center mx-auto text-center mt-12 p-6 bg-gray-50 rounded-xl shadow-md"
+  >
+    <div class="flex flex-col items-center text-gray-500">
+      <fa-icon [icon]="faBoxOpen" class="text-[70px] mb-4"></fa-icon>
+      <p class="text-[28px] font-semibold">Your Cart Is Empty</p>
+      <p class="text-sm text-gray-400 mt-2">
+        Looks like you haven't added anything yet.
+      </p>
+    </div>
+
+    <div class="w-full border-t border-gray-200 my-6"></div>
+
+    <button
+      type="button"
+      class="flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-gray-800 font-semibold px-6 py-2 rounded-full transition-all duration-300 shadow-sm cursor-pointer"
+      (click)="navigateToHome()"
+    >
+      <fa-icon [icon]="faShoppingCart" class="text-lg"></fa-icon>
+      Continue Shopping
+    </button>
+  </div>
+  }
+</ng-container>
