@@ -15,7 +15,7 @@
 
     <button
       type="button"
-      class="flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-gray-800 font-semibold px-6 py-2 rounded-full transition-all duration-300 shadow-sm cursor-pointer"
+      class="flex items-center gap-2 bg-amber-400 hover:bg-amber-500 hover:scale-105 text-gray-800 font-semibold px-6 py-2 rounded-full transition-all duration-300 shadow-sm cursor-pointer"
       (click)="navigateToHome()"
     >
       <fa-icon [icon]="faShoppingCart" class="text-lg"></fa-icon>
@@ -32,22 +32,49 @@
         <img
           [src]="'../../../../assets/images/' + cartItem.product.product_img"
           alt="Product Image"
-          class="h-[13em] rounded-md object-cover"
+          class="h-[13em] object-cover rounded-md"
         />
       </div>
 
       <div class="w-full md:w-2/3 flex flex-col justify-between text-left p-3">
         <div class="flex justify-between items-start">
-          <span class="text-xl font-semibold">{{
-            cartItem.product.product_name
-          }}</span>
-          <span class="text-2xl font-bold">{{
-            cartItem.product.price | currency
-          }}</span>
+          <span class="text-xl font-semibold"
+            >{{ cartItem.product.product_name }}</span
+          >
+          <span class="text-2xl font-bold"
+            >{{ cartItem.product.price | currency }}</span
+          >
         </div>
 
         <div class="my-2">
           <app-ratings [score]="cartItem.product.ratings"></app-ratings>
+        </div>
+
+        <hr class="my-3 border-gray-300" />
+
+        <div class="flex items-center flex-wrap gap-4">
+          <div class="flex border rounded overflow-hidden">
+            <button
+              class="px-3 py-1 bg-gray-200 hover:bg-gray300 font-bold cursor-pointer"
+            >
+              -
+            </button>
+            <div class="px-4 py-1 font-semibold text-center min-w-[3rem]">
+              {{ cartItem.quantity }}
+            </div>
+            <button
+              class="px-3 py-1 bg-gray-200 hover:bg-gray300 font-bold cursor-pointer"
+            >
+              +
+            </button>
+          </div>
+          <button
+            type="button"
+            class="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded cursor-pointer flex items-center gap-2"
+          >
+            <fa-icon [icon]="faTrash"></fa-icon>
+            Remove Item
+          </button>
         </div>
       </div>
     </div>
