@@ -9,6 +9,7 @@ import { CategoriesStoreItem } from '../services/category/categories.storeItem';
 import { SearchKeyword } from '../types/searchKeyword.type';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
+import { CartStoreItem } from '../services/cart/cart.storeItem';
 
 @Component({
   selector: 'app-header',
@@ -24,20 +25,22 @@ export class Header {
   readonly searchClicked = output<SearchKeyword>();
   displaySearch = signal(true);
 
-  constructor(public categoryStore: CategoriesStoreItem, private router: Router) {
+  constructor(
+    public categoryStore: CategoriesStoreItem,
+    private router: Router,
+    public cart: CartStoreItem
+  ) {
     this.router.events
-    .pipe(
-      filter(event => event instanceof NavigationEnd)
-    )
-    .subscribe((event: NavigationEnd) => {
-      this.displaySearch.set(event.url === '/home/products');
-    })
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.displaySearch.set(event.url === '/home/products');
+      });
   }
 
   onClickSearch(keyword: string, categoryId: string): void {
     this.searchClicked.emit({
       categoryId: parseInt(categoryId),
-      keyword: keyword
+      keyword: keyword,
     });
   }
 }

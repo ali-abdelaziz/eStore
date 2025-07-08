@@ -55,8 +55,21 @@
           >
         </h5>
       </div>
-      <div class="flex items-center gap-4 text-white text-[1.3em]">
-        <fa-icon [icon]="faShoppingCart"></fa-icon>
+      <div class="relative flex items-center">
+        <button
+          type="button"
+          class="flex items-center justify-center text-white p-2 rounded-full bg-gray-700 hover:bg-gray-800 transition-colors cursor-pointer"
+        >
+          <fa-icon [icon]="faShoppingCart" class="text-[1.3em]"></fa-icon>
+        </button>
+
+        @if (cart.cart()) { @if (cart.totalProducts() > 0) {
+        <span
+          class="absolute -top-1 -right-1 flex items-center justify-center text-[0.7rem] font-semibold text-white bg-amber-500 rounded-full w-5 h-5"
+        >
+          {{ cart.totalProducts() }}
+        </span>
+        } }
       </div>
     </div>
   </div>
