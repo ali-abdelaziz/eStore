@@ -1,9 +1,20 @@
-import { computed, signal } from '@angular/core';
+import { computed, effect, signal } from '@angular/core';
 import { CartItem } from '../../types/cart.type';
 import { Product } from '../../../products/types/products.type';
 
 export class CartStoreItem {
-  private readonly _products = signal<CartItem[]>([]);
+  private readonly _products = signal<CartItem[]>(this.loadFromSession());
+
+  private _saveEffect = effect(() => {
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      const products = this._products();
+      if (products.length === 0) {
+        window.sessionStorage.removeItem('cart');
+      } else {
+        window.sessionStorage.setItem('cart', JSON.stringify(products));
+      }
+    }
+  });
 
   readonly totalAmount = computed(() => {
     return this._products().reduce((sum, item) => sum + item.amount, 0);
@@ -21,7 +32,9 @@ export class CartStoreItem {
 
   addProduct(product: Product): void {
     const currentItems = this._products(); // Get the current items in the cart
-    const existingIndex = currentItems.findIndex((item) => item.product.id === product.id); // Get the index of the existing product
+    const existingIndex = currentItems.findIndex(
+      (item) => item.product.id === product.id
+    ); // Get the index of the existing product
     // Check if the product already exists in the cart
     // If it does not exist, add it with quantity 1 and its price as amount
     // If it exists, increment the quantity and update the amount
@@ -73,5 +86,17 @@ export class CartStoreItem {
       (item) => item.product.id !== cartItem.product.id // Filter out the item to be removed
     );
     this._products.set(updatedItems);
+  }
+
+  private loadFromSession(): CartItem[] {
+    const storedProducts =
+      typeof window !== 'undefined' && window.sessionStorage
+        ? window.sessionStorage.getItem('cart')
+        : null;
+    try {
+      return storedProducts ? JSON.parse(storedProducts) : [];
+    } catch {
+      return [];
+    }
   }
 }
