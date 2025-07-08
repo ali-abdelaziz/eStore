@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
 import { Ratings } from '../../ratings/ratings';
+import { CartItem } from '../types/cart.type';
 
 @Component({
   selector: 'app-cart',
@@ -25,5 +26,17 @@ export class Cart {
 
   navigateToHome(): void {
     this.router.navigate(['home/products']);
+  }
+
+  updateQuantity($event: any, cartItem: CartItem): void {
+    if ($event.target.innerText === '+') {
+      this.cartStore.addProduct(cartItem.product);
+    } else if ($event.target.innerText === '-') {
+      this.cartStore.decreaseProductQuantity(cartItem);
+    }
+  }
+
+  removeItem(cartItem: CartItem): void {
+    this.cartStore.removeProduct(cartItem);
   }
 }

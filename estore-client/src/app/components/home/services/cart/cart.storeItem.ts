@@ -47,4 +47,31 @@ export class CartStoreItem {
       this._products.set(updatedItems);
     }
   }
+
+  decreaseProductQuantity(cartItem: CartItem): void {
+    const updatedItems = this._products()
+      .map((item) => {
+        if (item.product.id === cartItem.product.id) {
+          if (item.quantity <= 1) {
+            return null; // If quantity is < 1, we will remove the item instead of decreasing it
+          }
+          return {
+            ...item,
+            quantity: item.quantity - 1, // Decrease the quantity
+            amount: item.amount - Number(item.product.price), // Decrease the amount
+          };
+        }
+        return item;
+      })
+      .filter(Boolean) as CartItem[]; //Remove nulls from the array
+
+    this._products.set(updatedItems);
+  }
+
+  removeProduct(cartItem: CartItem): void {
+    const updatedItems = this._products().filter(
+      (item) => item.product.id !== cartItem.product.id // Filter out the item to be removed
+    );
+    this._products.set(updatedItems);
+  }
 }
