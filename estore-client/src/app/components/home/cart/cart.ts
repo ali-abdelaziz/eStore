@@ -7,10 +7,12 @@ import {
   faShoppingCart,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
+import { CommonModule } from '@angular/common';
+import { Ratings } from '../../ratings/ratings';
 
 @Component({
   selector: 'app-cart',
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, CommonModule, Ratings],
   templateUrl: './cart.html',
   styleUrl: './cart.css',
 })
