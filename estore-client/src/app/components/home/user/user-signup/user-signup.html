@@ -144,6 +144,10 @@
           confirmPassword?.errors?.['required']) {
           <span class="text-red-500 text-sm">Confirm password is required</span>
           }
+          @if (confirmPassword?.touched &&
+          userSignupForm.errors?.['passwordMismatch']) {
+          <span class="text-red-500 text-sm">Passwords do not match</span>
+          }
         </div>
       </div>
 
