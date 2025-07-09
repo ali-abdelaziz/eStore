@@ -8,8 +8,9 @@ import { CategoryService } from './services/category/category';
 import { ProductsStoreItem } from '../products/services/products.storeItem';
 import { ProductsService } from '../products/services/products';
 import { SearchKeyword } from './types/searchKeyword.type';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { CartStoreItem } from './services/cart/cart.storeItem';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -27,10 +28,20 @@ import { CartStoreItem } from './services/cart/cart.storeItem';
 export class Home {
   constructor(
     private categoriesStoreItem: CategoriesStoreItem,
-    private productsStoreItem: ProductsStoreItem
+    private productsStoreItem: ProductsStoreItem,
+    private router: Router
   ) {
     this.categoriesStoreItem.loadCategories();
     this.productsStoreItem.loadProducts();
+    router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event) => {
+      // If the user navigates to '/home', redirect to '/home/products'
+      // This is to ensure that the products are loaded when the user first visits the home page
+      if ((event as NavigationEnd).url === '/home') {
+        this.router.navigate(['/home/products']);
+      }
+    });
   }
 
   onSelectCategory(mainCategoryId: number): void {
