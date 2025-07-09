@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-signup',
@@ -12,15 +12,28 @@ export class UserSignup {
 
   constructor(private fb: FormBuilder) {
     this.userSignupForm = this.fb.group({
-      firstName: [''],
+      firstName: ['', Validators.required],
       lastName: [''],
       address: [''],
       city: [''],
       state: [''],
       pin: [''],
-      email: [''],
-      password: [''],
-      confirmPassword: [''],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
     });
+  }
+
+  get firstName(): AbstractControl<any, any> | null {
+    return this.userSignupForm.get('firstName');
+  }
+  get email(): AbstractControl<any, any> | null {
+    return this.userSignupForm.get('email');
+  }
+  get password(): AbstractControl<any, any> | null {
+    return this.userSignupForm.get('password');
+  }
+  get confirmPassword(): AbstractControl<any, any> | null {
+    return this.userSignupForm.get('confirmPassword');
   }
 }

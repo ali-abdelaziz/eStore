@@ -20,8 +20,12 @@
             id="firstName"
             type="text"
             formControlName="firstName"
+            autocomplete="off"
             class="mt-1 block w-full rounded-md border px-3 py-2 text-sm"
           />
+          @if (firstName?.touched && firstName?.errors?.['required']) {
+          <span class="text-red-500 text-sm">First name is required.</span>
+          }
         </div>
         <div>
           <label for="lastName" class="block text-sm font-medium text-gray-700"
@@ -31,6 +35,7 @@
             id="lastName"
             type="text"
             formControlName="lastName"
+            autocomplete="off"
             class="mt-1 block w-full rounded-md border px-3 py-2 text-sm"
           />
         </div>
@@ -46,6 +51,7 @@
             id="address"
             type="text"
             formControlName="address"
+            autocomplete="off"
             class="mt-1 block w-full rounded-md border px-3 py-2 text-sm"
           />
         </div>
@@ -57,6 +63,7 @@
             id="city"
             type="text"
             formControlName="city"
+            autocomplete="off"
             class="mt-1 block w-full rounded-md border px-3 py-2 text-sm"
           />
         </div>
@@ -68,17 +75,19 @@
             id="state"
             type="text"
             formControlName="state"
+            autocomplete="off"
             class="mt-1 block w-full rounded-md border px-3 py-2 text-sm"
           />
         </div>
         <div>
           <label for="pin" class="block text-sm font-medium text-gray-700"
-            >Pin</label
+            >Pin / Zip code</label
           >
           <input
             id="pin"
             type="text"
             formControlName="pin"
+            autocomplete="off"
             class="mt-1 block w-full rounded-md border px-3 py-2 text-sm"
           />
         </div>
@@ -93,8 +102,14 @@
           id="email"
           type="email"
           formControlName="email"
+          autocomplete="off"
           class="mt-1 block w-full rounded-md border px-3 py-2 text-sm"
         />
+        @if (email?.touched && email?.errors?.['required']) {
+        <span class="text-red-500 text-sm">Email is required.</span>
+        } @if (email?.touched && email?.errors?.['email']) {
+        <span class="text-red-500 text-sm">Enter valid email address</span>
+        }
       </div>
 
       <!-- Passwords -->
@@ -109,12 +124,15 @@
             formControlName="password"
             class="mt-1 block w-full rounded-md border px-3 py-2 text-sm"
           />
+          @if (password?.touched && password?.errors?.['required']) {
+          <span class="text-red-500 text-sm">Password is required</span>
+          }
         </div>
         <div>
           <label
             for="confirmPassword"
             class="block text-sm font-medium text-gray-700"
-            >Confirm *</label
+            >Confirm Password *</label
           >
           <input
             id="confirmPassword"
@@ -122,6 +140,10 @@
             formControlName="confirmPassword"
             class="mt-1 block w-full rounded-md border px-3 py-2 text-sm"
           />
+          @if (confirmPassword?.touched &&
+          confirmPassword?.errors?.['required']) {
+          <span class="text-red-500 text-sm">Confirm password is required</span>
+          }
         </div>
       </div>
 
@@ -129,7 +151,8 @@
       <div class="text-center pt-4">
         <button
           type="submit"
-          class="bg-indigo-600 hover:bg-indigo-700 text-white text-md px-8 py-2 rounded-md cursor-pointer"
+          class="bg-indigo-600 hover:bg-indigo-700 text-white text-md px-8 py-2 rounded-md cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed"
+          [disabled]="!userSignupForm.valid"
         >
           Join
         </button>
