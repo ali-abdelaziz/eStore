@@ -43,17 +43,11 @@
     <div class="flex items-center me-6 gap-6 justify-end h-full">
       <div class="flex items-center gap-2 text-white">
         <fa-icon [icon]="faUserCircle" class="text-[1.3em]"></fa-icon>
-        <h5>
-          <a href="#" class="text-white no-underline hover:underline"
-            >Sign in</a
-          >
-        </h5>
-        <span>/</span>
-        <h5>
-          <a href="#" class="text-white no-underline hover:underline"
-            >Register</a
-          >
-        </h5>
+        <a
+        routerLink="/home/signup"
+        class="px-1 py-1 rounded transition-all duration-300 hover:bg-white hover:text-gray-900"
+        >Sign in / Join</a
+      >
       </div>
       <div class="relative flex items-center">
         <button
